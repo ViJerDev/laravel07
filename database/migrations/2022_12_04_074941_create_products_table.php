@@ -18,9 +18,9 @@ return new class extends Migration
             $table->string('name', 255)->nullable(false)->unique();
             $table->integer('category_id');
             $table->integer('price')->nullable(false);
-            $table->string('img', 255)->unique();
+            $table->string('img', 255);
             $table->boolean('status')->default(0);
-            $table->string('description', 255);
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }

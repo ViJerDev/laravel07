@@ -24,11 +24,11 @@
             <td>${{ $product->price }}</td>
             <td>{{ $product->description }}</td>
             <td>
+                <a href="{{ route('products.edit', $product) }}" type="button" class="btn btn-warning">Edit...</a>
                 <form method="POST" action="{{ route('products.destroy', $product) }}">
-                    <a href="{{ route('products.edit', $product) }}" type="button" class="btn btn-warning">Edit...</a>
                     @csrf
                     @method('DELETE')
-                    <butt class="btn btn-danger" type="submit">Delete</butt>
+                    <button class="btn btn-danger" type="submit">Delete</button>
                 </form>
             </td>
         </tr>
