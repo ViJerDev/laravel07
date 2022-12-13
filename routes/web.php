@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\FirstController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
@@ -25,6 +26,9 @@ Route::middleware(['auth', 'isAdmin'])->prefix('admin')->group(function (){
 });
 
 Route::resource('products', ProductController::class);
+
+Route::get('/feedback', [FeedbackController::class, 'index'])->name('feedback.index');
+Route::middleware('auth')->resource('feedback', FeedbackController::class)->except('index');
 
 Auth::routes();
 
