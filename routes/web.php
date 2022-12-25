@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\CatalogController;
 use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\FirstController;
 use App\Http\Controllers\ProductController;
@@ -20,7 +22,14 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [FirstController::class, 'index'])->name('main');
 
-Route::middleware(['auth', 'isAdmin'])->prefix('admin')->group(function (){
+Route::get('catalog', [CatalogController::class, 'catalog']);
+Route::get('catalog/{category}/{product}', [CatalogController::class, 'product']);
+Route::get('catalog/{category}', [CatalogController::class, 'category']);
+
+Route::post('/add_to_cart', [CartController::class, 'addToCart'])->name('addToCart');
+Route::get('/show', [CartController::class, 'show']);
+
+Route::prefix('admin')->group(function () {
     Route::get('/', [DashboardController::class, 'index']);
     Route::resource('categories', CategoryController::class)->except('show');
 });
