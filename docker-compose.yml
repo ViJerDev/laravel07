@@ -17,8 +17,8 @@ services:
         environment:
             PHP_IDE_CONFIG: "serverName=laravel07"
         build:
-          dockerfile: docker/php/Dockerfile
-          context: .
+            dockerfile: docker/php/Dockerfile
+            context: .
         volumes:
             - ./:/var/www/html
         ports:
@@ -33,4 +33,8 @@ services:
         environment:
             - MYSQL_ROOT_PASSWORD=root
             - MYSQL_DATABASE=laravel07
-
+    redis-07:
+        container_name: redis-07
+        image: redis:latest
+        ports:
+            - "6379:6379"
