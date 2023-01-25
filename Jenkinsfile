@@ -18,7 +18,7 @@ pipeline {
                         sh 'docker exec --tty laravel07_fpm chmod -R 777 storage'
                         sh 'docker exec --tty laravel07_fpm php artisan key:generate'
                         sh 'docker exec --tty laravel07_fpm php artisan storage:link'
-                        sh 'docker exec --tty laravel07_fpm php artisan migrate'
+                        sh 'docker exec --tty laravel07_fpm php artisan migrate --force'
                     }
         }
     }
